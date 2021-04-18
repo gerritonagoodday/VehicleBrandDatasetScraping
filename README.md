@@ -1,35 +1,42 @@
 # Vehicle Brand Dataset Scraping
 
-This app scrapes nice car images from Autotrader to create a dataset of car brands for ML,
-without anyone at Autotrader noticing, by using some clever magic, which comes at a monetary cost:
-We use the best scraper service API, Scraping Bee. Currently itis restricted to the UK-based dataset of car brands
+This app scrapes car images from Autotrader website in order to create a dataset of car brands for Machine Learning (ML). 
+Autotrader is one of those websites that the owners would prefer are on scraped in bulk, since their commercial advantage with this 
+website could be usurped. They have therefore made is very difficult to scrape, but it can be done without anyone at Autotrader noticing, 
+by using some clever magic that comes at a monetary cost: This app uses the best scraper service API currently available, Scraping Bee. 
 
-## What would we use this data for?
+For now, the app only scrapes the UK-based website in order to build a UK'based dataset of car brands
 
-Essentially, crime prevention. And then, much more else too, like finer traffic control management
+## What would we use this dataset for?
+
+Firstly, crime prevention and detection. Following on, much more else too, like finer traffic control management.
 
 With a compehensive set of images of car brands, it should be possible to "teach" a machine-learning application 
 to recognise car brands in real time from live video and camera observations. This gives an added attribute to
-the identified, offending vehicle's registration / license plate, or at least provide backup information where the licenses plate could not be read.
+an vehicle of interest's registration / license plate, or at least provide backup information where
+the licenses plate could not be read.
 
 The better quality the learning data is (i.e. the less extraneous information is included), the faster, smaller and more
 efficient the resulting image analysis will be. This means that image processing can possibly be done directly on the 
 embedded camera hardware using Edge-AI and Tiny-ML techhniques. One advantage of doing the analysis locally at the camera is that 
-the image-results can be transmitted much faster than the actual image itself.
+the omage processing results can be transmitted much faster and in real time, over very low bandwith and over great distances, 
+than the actual image itself. Typically, the LoRa transmission protocol is used for transmitting the essential data in real-time, 
+and the images themselves can be manually collected over WiFi during routine drive-by data collection. 
 
 ![Overview](.images/HighLevelOverview.png)
 
 # Scrape your own Dataset
 
-Either download the published dataset from https://www.kaggle.com/bignosethethird/uk-car-brands-dataset
-or build your own one, or use this code as an example of how to scrape a website that _really_, _really_ does not want to be scraped.
+You can either download the published dataset from https://www.kaggle.com/bignosethethird/uk-car-brands-dataset
+or build your own dataset, or use this code as an example of how to scrape a website that _really_, _really_ does not want to be scraped.
 
 ## Get your own cool API key!
 
-If you want to enhance this further or create datasets for other countries in which Autotrader operates, 
+If you want to enhance the dataset further or create datasets for other countries in which Autotrader operates, 
 you can make a few configuration changes in the ScrapeUKCarsDataset.py Python script. 
 
-Sign up with this link and get your own API key:
+You will also need your own API key, at $29 per month. Sign up through this link and get your own API key <sup id="a1">[1](#f1)</sup>:
+
 
 https://www.scrapingbee.com?fpr=nobnose-inc27
 
@@ -106,4 +113,27 @@ find UKCarsDataset -type f -name "*.jpg" -exec BlankRegPlate {} \;
 ```
 
 Images where the number plate blanking failed will be notified and you may need to manually remove them using a GIMP or Photoshop, or just remove them and just go scrape some more images.
+
+---
+<sup><b id="f1">1</b> Excuse the underhand attempt to score a little affiliation fee. This project stagnated in 2013 and needs some urgent funding!(#a1)</sup>
+
+---
+ Some pictures to drool over from the more select brands:
+ 
+ 
+ ![AstonMartin](.images/AstonMartin.png)
+ 
+ ![Ferrari](.images/Ferrari.png)
+ 
+ ![Lamborghini](.images/Lamborghini.png)
+ 
+ ![Lotus](.images/Lotus.png)
+ 
+ ![McLaren](.images/McLaren.png)
+ 
+ ![Rolls Royce](.images/RollsRoyce.png)
+
+ 
+ 
+
 
