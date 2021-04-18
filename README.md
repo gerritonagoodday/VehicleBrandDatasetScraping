@@ -80,7 +80,9 @@ Or better still, use the ```logwatch``` utiliy that is also in this git repo for
 logwatch.sh ScrapeUKCarsDataset.log
 ```
 
-## Curation Round 1
+## Curating the collection of images
+
+### Curation Round 1
 
 The first curation step is to remove all duplicate images. These are caused by advertisers using 
 generic stock images or simply their logo. There is unlikely going to be be any useful,so just 
@@ -94,7 +96,7 @@ This app selects only the main image per advertised car, which is usually a fron
 slight side angle, like in a fashion shoot. This is exactly what we want, since the 
 observation camera will mpstly be placed facing oncoming traffic on the side of the road.
 
-## Curation Round 2
+### Curation Round 2
 
 The second curation step is to visually inspect all your new files and remove those that are
 not useful for ML, like a side view, interiour view, obvious dealership signage, a girly model
@@ -102,7 +104,7 @@ draped across the car's hood, big for-sale text and price in front window, etc.,
 If you remove these images, you can rerun the scraping process a few weeks later
 when the offending vehicles have been removed from the website.
 
-## Curation Round 3
+### Curation Round 3
 
 Finally, all the registration number plates need to be blanked out from the images. 
 This is still work in progress and is not perfect. Use the utility BlankRegPlate that is also 
@@ -118,22 +120,36 @@ Images where the number plate blanking failed will be notified and you may need 
 <sup><b id="f1">1</b> Excuse the underhand attempt to score a little affiliation fee. This project stagnated in 2013 and needs some urgent funding!(#a1)</sup>
 
 ---
- Some pictures to drool over from the more select brands:
+
+## Some pictures to drool over, compiled from this dataset
  
+AstonMartin
  
  ![AstonMartin](.images/AstonMartin.png)
+  
+ 
+Ferrari
  
  ![Ferrari](.images/Ferrari.png)
  
+ 
+Lamborghini
+ 
  ![Lamborghini](.images/Lamborghini.png)
+ 
+ 
+Lotus
  
  ![Lotus](.images/Lotus.png)
  
+ 
+McLaren
+ 
  ![McLaren](.images/McLaren.png)
+ 
+ 
+ Rolls Royce
  
  ![Rolls Royce](.images/RollsRoyce.png)
 
  
- 
-
-
