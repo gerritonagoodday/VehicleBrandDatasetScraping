@@ -1,34 +1,38 @@
 # Vehicle Brand Dataset Scraping
 
-This app scrapes car images from Autotrader website in order to create a dataset of car brands for Machine Learning (ML). 
-Autotrader is one of those websites that the owners would prefer are on scraped in bulk, since their commercial advantage with this 
-website could be usurped. They have therefore made is very difficult to scrape, but it can be done without anyone at Autotrader noticing, 
-by using some clever magic that comes at a monetary cost: This app uses the best scraper service API currently available, Scraping Bee. 
+This collection of app scrapes car images from Autotrader website in order to create a dataset of car brands for Machine Learning (ML). 
+Autotrader is one of those websites that the owners would prefer are not scraped in bulk, since this undermines their commercial advantage. 
+They have therefore made is very difficult to scrape with all sorts of technical chicanery, 
+but it can be done without anyone at Autotrader noticing, 
+by using some clever magic that comes at a monetary cost: 
+This app uses the best scraper service API currently available, Scraping Bee. 
 
-For now, the app only scrapes the UK-based website in order to build a UK'based dataset of car brands
+For now, the app collection only scrapes the UK-based Autotrader website in order to build a UK-based dataset of vehicle brands for cars, pickup trucks ('bakkies' in South Africa, OK?), vans, HGVs and campers.
 
 ## What would we use this dataset for?
 
-Firstly, crime prevention and detection. Following on, much more else too, like finer traffic control management.
+Firstly, crime prevention and detection. Following on, so much more else too, like finer traffic control management. 
+Want to make a case to your local council for building that bypass around your village, already?
 
-With a compehensive set of images of car brands, it should be possible to "teach" a machine-learning application 
+With a compehensive set of images of each of the popular vehicle brands, it should be possible to "teach" a machine-learning application 
 to recognise car brands in real time from live video and camera observations. This gives an added attribute to
-an vehicle of interest's registration / license plate, or at least provide backup information where
+a vehicle-of-interest's registration / license plate, or at least provide backup information where
 the licenses plate could not be read.
 
 The better quality the learning data is (i.e. the less extraneous information is included), the faster, smaller and more
-efficient the resulting image analysis will be. This means that image processing can possibly be done directly on the 
+efficient the resulting image analysis will be. This means that image processing could possibly be done directly on the 
 embedded camera hardware using Edge-AI and Tiny-ML techhniques. One advantage of doing the analysis locally at the camera is that 
-the omage processing results can be transmitted much faster and in real time, over very low bandwith and over great distances, 
+the results of the image processing can be transmitted in real time over very low bandwith connections and over great distances, 
 than the actual image itself. Typically, the LoRa transmission protocol is used for transmitting the essential data in real-time, 
-and the images themselves can be manually collected over WiFi during routine drive-by data collection. 
+and the images themselves can be manually collected over WiFi during routine drive-by data collection or by daiy-chaining them in 
+a WiFi grid network.
 
 ![Overview](.images/HighLevelOverview.png)
 
 # Scrape your own Dataset
 
 You can either download the published dataset from https://www.kaggle.com/bignosethethird/uk-car-brands-dataset
-or build your own dataset, or use this code as an example of how to scrape a website that _really_, _really_ does not want to be scraped.
+or build your own dataset, or use this code as an example of how to scrape another website that _really_, _really_ does not want to be scraped.
 
 ## Get your own cool API key!
 
@@ -36,7 +40,6 @@ If you want to enhance the dataset further or create datasets for other countrie
 you can make a few configuration changes in the ScrapeUKCarsDataset.py Python script. 
 
 You will also need your own API key, at $29 per month. Sign up through this link and get your own API key <sup id="a1">[1](#f1)</sup>:
-
 
 https://www.scrapingbee.com?fpr=nobnose-inc27
 
