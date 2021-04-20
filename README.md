@@ -14,7 +14,7 @@ For now, the app collection only scrapes the UK-based Autotrader website in orde
 Firstly, crime prevention and detection. Following on, so much more else too, like finer traffic control management. 
 Want to make a case to your local council for building that bypass around your village, already?
 
-With a compehensive set of images of each of the popular vehicle brands, it should be possible to "teach" a machine-learning application 
+With a comprehensive set of images of each of the popular vehicle brands, it should be possible to "teach" a machine-learning application 
 to recognise car brands in real time from live video and camera observations. This gives an added attribute to
 a vehicle-of-interest's registration / license plate, or at least provides some backup information where
 the licenses plate could not be read.
