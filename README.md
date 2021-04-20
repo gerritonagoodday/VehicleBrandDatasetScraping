@@ -16,7 +16,7 @@ Want to make a case to your local council for building that bypass around your v
 
 With a compehensive set of images of each of the popular vehicle brands, it should be possible to "teach" a machine-learning application 
 to recognise car brands in real time from live video and camera observations. This gives an added attribute to
-a vehicle-of-interest's registration / license plate, or at least provide backup information where
+a vehicle-of-interest's registration / license plate, or at least provides some backup information where
 the licenses plate could not be read.
 
 The better quality the learning data is (i.e. the less extraneous information is included), the faster, smaller and more
