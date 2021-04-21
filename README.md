@@ -110,17 +110,17 @@ when the offending vehicles have been removed from the website.
 ### Curation Round 3
 
 Finally, all the registration number plates need to be blanked out from the images. 
-This is still work in progress and is not perfect. Use the utility BlankRegPlate that is also 
-in this repo:
+Use the utility BlankRegPlate that is also in this repo:
+This is still work in progress and is not perfect. Manually verify your results.
 
 ```
-find UKCarsDataset -type f -name "*.jpg" -exec BlankRegPlate {} \;
+find UKCarsDataset -type f -name "*.jpg" -exec ./BlankRegPlate.py {} \;
 ```
 
 Images where the number plate blanking failed will be notified and you may need to manually remove them using a GIMP or Photoshop, or just remove them and just go scrape some more images.
 
 ---
-<sup><b id="f1">1</b> Excuse the underhand attempt to score a little affiliation fee. This project stagnated in 2013 and needs some urgent funding!(#a1)</sup>
+<sup><b id="f1">1</b> Yes, this is an underhand attempt to score a little affiliation fee. This project stagnated in 2013 and needs some urgent funding!</sup>
 
 ---
 
@@ -129,12 +129,12 @@ Images where the number plate blanking failed will be notified and you may need 
 ### AstonMartin
  
 ![AstonMartin](.images/AstonMartin.png)
-  
+
  
 ### Ferrari
  
 ![Ferrari](.images/Ferrari.png)
- 
+
  
 ### Lamborghini
  

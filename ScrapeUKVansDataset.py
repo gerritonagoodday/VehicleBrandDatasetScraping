@@ -2,7 +2,7 @@
 ##########################################################################################################
 api_key = "CXUWSH6Y2BRB8F07MB7YXWPYWV2TQ4K51G4N6SGEU1YDADAVDW35ZT7WNISZ8YMCQ810OP9KG22ZI2P2"
 ##########################################################################################################
-# This app scrapes nice VAN images from Autotrader to create a UK-based dataset of car brands for ML,
+# This app scrapes nice VAN images from Autotrader to create a UK-based dataset of van brands for ML,
 # without anyone at Autotrader noticing, by using some clever magic, which comes at a monetary cost:
 # We use the best scraper service API, Scraping Bee. Sign up with this link and get your own API key:
 # https://www.scrapingbee.com?fpr=nobnose-inc27
@@ -23,15 +23,15 @@ rootdir='UKVansDataset'
 # generic stock images or simply their logo. There is unlikely going to be be any useful,so just 
 # summarily remove them first of all with the command
 #
-# fdupe -rd UKCarsDataset
+# fdupe -rd UKVansDataset
 #
-# This app selects only the main image per advertised car, which is usually a front-on view with a
+# This app selects only the main image per advertised van, which is usually a front-on view with a
 # slight side angle, like in a fashion shoot. This is exactly what we want, since the 
 # observation camera will mpstly be placed facing oncoming traffic on the side of the road.
 # 
 # The second curation step is to visually inspect all your new files and remove those that are
 # not useful for ML, like a side view, interiour view, obvious dealership signage, a girly model
-# draped across the car's hood, big for-sale text and price in front window, etc., 
+# draped across the van/car's hood, big for-sale text and price in front window, etc., 
 # If you remove these images, you can rerun the scraping process a few weeks later
 # when the offending vehicles have been removed from the website.
 #
@@ -39,13 +39,12 @@ rootdir='UKVansDataset'
 # This is still work in progress and is not perfect. Use the utility BlankRegPlate that is also 
 # in this repo:
 # 
-# find UKCarsDataset -type f -name "*.jpg" -exec BlankRegPlate {} \;
+# find UKVansDataset -type f -name "*.jpg" -exec BlankRegPlate {} \;
 #
 imagesPerBrand=150
 
 # .. and these are the mpst frequently-encountered brands in the UK that we are interested in:
-# searchBrands=["CITROEN","DODGE","FIAT","FORD","FUSO","IVECO","MERCEDES-BENZ","MITSUBISHI","LANDROVER","MAN","MAXUS","MINI","NISSAN","PEUGEOT","RENAULT","SSANGYONG","TOYOTA","VAUXHALL","VOLKSWAGEN"]
-searchBrands=["TOYOTA","VAUXHALL","VOLKSWAGEN"]
+searchBrands=["CITROEN","DODGE","FIAT","FORD","FUSO","IVECO","MERCEDES-BENZ","MITSUBISHI","LANDROVER","MAN","MAXUS","MINI","NISSAN","PEUGEOT","RENAULT","SSANGYONG","TOYOTA","VAUXHALL","VOLKSWAGEN"]
 
 ##########################################################################################################
 from bs4 import BeautifulSoup as bs
@@ -95,7 +94,7 @@ class Watchdog(Exception):  # Usage:
     return "Function call took more than %ds to complete" % self.time
 
 # Precomile regex patterns
-# Get car-details/202010145004040 from href="/car-details/202102128983367?...
+# Get details/202010145004040 from href="/car-details/202102128983367?...
 patternVanId=re.compile(r'/van-details/(\d{15})?',re.IGNORECASE)
 
 # Arbitrary post code because the website insists on it
@@ -173,9 +172,9 @@ def main():
     _path, _dirs, _files = next(os.walk(brandPath))
     currentFileCount = len(_files)  
     imagesToGet = imagesPerBrand - currentFileCount
-    logger.info('Getting %d images for car brand %s',imagesToGet,searchBrand)
+    logger.info('Getting %d images for van brand %s',imagesToGet,searchBrand)
       
-    # Front page search for each car brand  
+    # Front page search for each van brand  
     imageCount = 0
     vanPrevIds=[]
     vanIds=[]
@@ -183,7 +182,7 @@ def main():
     for page in range(1,99):
       if imageCount >= imagesToGet:
         break
-      # Make up URL 'https://www.autotrader.co.uk/car-search?postcode=XXXXXXX&make=AUDI&page=XXXX',    
+      # Make up URL 'https://www.autotrader.co.uk/van-search?postcode=XXXXXXX&make=AUDI&page=XXXX',    
       page10CarURL='{}/van-search?postcode={}&make={}&page={}'.format(url,postcode,urllib.parse.quote(searchBrand),page)
       logger.info('%s: Getting page %d at %s', searchBrand,page,page10CarURL)
       response = send_request(page10CarURL,1)
@@ -193,7 +192,7 @@ def main():
         break # no more pages for brand
       else:
 
-        # Process 10-car page (mostly 10 to 13)
+        # Process 10-van page (mostly 10 to 13)
         soup = bs(response.content,'html.parser')
         # Check for errors
         try:
@@ -208,7 +207,7 @@ def main():
             exit(1)
 
         
-        # Check if redirected to previous page by comparing list of Car Ids
+        # Check if redirected to previous page by comparing list of Van Ids
         # of this page to the previous one. If they are the same, it means 
         # that there are no more pages left for this brand          
         vanPrevIds = vanIds.copy() # save previous state
@@ -220,7 +219,7 @@ def main():
         for anchor in anchors:   
           vanCounter+=1
           href = anchor.attrs["href"]
-          # Get anchor's href link to get car details, find 15-digit vanDetailsId 
+          # Get anchor's href link to get van details, find 15-digit vanDetailsId 
           # in 'href="/van-details/202102128983367?...'
           #                        ===============
           match = re.search(patternVanId,href)
@@ -293,10 +292,10 @@ def main():
           vanPrevIds.sort()
           if vanIds == vanPrevIds:
             # A redirection happened.
-            logger.warning("No more %s brand cars available. Last page was %s.",searchBrand,page10CarURL)
+            logger.warning("No more %s brand vans available. Last page was %s.",searchBrand,page10CarURL)
             break # no more pages for brand
   # } for
-  logger.info("All car brands scraped.")
+  logger.info("All van brands scraped.")
 # } main          
 
 if __name__ == "__main__":
