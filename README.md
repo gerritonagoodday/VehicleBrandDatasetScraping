@@ -1,6 +1,6 @@
 # Vehicle Brand Dataset Scraping
 
-This collection of app scrapes car images from Autotrader website in order to create a dataset of car brands for Machine Learning (ML). 
+This collection of apps scrapes car images from Autotrader website in order to create a dataset of car brands for Machine Learning (ML). 
 Autotrader is one of those websites that the owners would prefer are not scraped in bulk, since this undermines their commercial advantage. 
 They have therefore made is very difficult to scrape with all sorts of technical chicanery, 
 but it can be done without anyone at Autotrader noticing, 
@@ -15,9 +15,9 @@ Firstly, crime prevention and detection. Following on, so much more else too, li
 Want to make a case to your local council for building that bypass around your village, already?
 
 With a comprehensive set of images of each of the popular vehicle brands, it should be possible to "teach" a machine-learning application 
-to recognise car brands in real time from live video and camera observations. This gives an added attribute to
+to recognize car brands in real-time from live video and camera observations. This gives an added attribute to
 a vehicle-of-interest's registration / license plate, or at least provides some backup information where
-the licenses plate could not be read.
+the license plate could not be read.
 
 The better quality the learning data is (i.e. the less extraneous information is included), the faster, smaller and more
 efficient the resulting image analysis will be. This means that image processing could possibly be done directly on the 
@@ -108,6 +108,17 @@ If you remove these images, you can rerun the scraping process a few weeks later
 when the offending vehicles have been removed from the website.
 
 ### Curation Round 3
+
+Remove the background from all the images, using a public utility called ```backgroundremover```. 
+To install it, use ```pip```:
+
+```
+# pip install backgroundremover
+````
+
+See the file ```BackgroundRemove.sh``` on how this used.
+
+### Curation Round 4
 
 Finally, all the registration number plates need to be blanked out from the images. 
 Use the utility BlankRegPlate that is also in this repo:
