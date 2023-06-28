@@ -130,6 +130,23 @@ find UKCarsDataset -type f -name "*.jpg" -exec ./BlankRegPlate.py {} \;
 
 Images where the number plate blanking failed will be notified and you may need to manually remove them using a GIMP or Photoshop, or just remove them and just go scrape some more images.
 
+## Use in other AI / ML applications
+
+It may be useful to put all the files into one directory and to keep the attributes in the file name. 
+
+```
+mkdir ALLFILES
+cd ALLFILES
+$ find .. -name "*.png" -type f -print | sed -e 's|\(.*\)/\(.*\)/\(.*\)/\(.*\.png\)|cp "\1/\2/\3/\4" "./\2_\3_\4"|' > runme.sh
+sh ./runme.sh
+rename 's/UKVansDataset/Van/' *
+rename 's/UKCarsDataset/Car/' *
+rename 's/UKTrucksDataset/Truck/' *
+rename 's/UKPickupsDataset/Pickup/' *
+```
+
+You should end up with file names like ```Van_VOLKSWAGEN_202106103709129.png```, which is useful for AI / ML apps like EdgeImpulse.
+
 ---
 <sup><b id="f1">1</b> Yes, this is an underhand attempt to score a little affiliation fee. This project stagnated in 2013 and needs some urgent funding!</sup>
 
