@@ -85,7 +85,7 @@ logwatch.sh ScrapeUKCarsDataset.log
 
 ## Curating the collection of images
 
-### Curation Round 1
+### Curation Round 1 - Deduplicate
 
 The first curation step is to remove all duplicate images. These are caused by advertisers using 
 generic stock images or simply their logo. There is unlikely going to be be any useful,so just 
@@ -97,17 +97,17 @@ fdupe -rd UKCarsDataset
 
 This app selects only the main image per advertised car, which is usually a front-on view with a
 slight side angle, like in a fashion shoot. This is exactly what we want, since the 
-observation camera will mpstly be placed facing oncoming traffic on the side of the road.
+observation camera will mostly be placed facing oncoming traffic on the side of the road.
 
 ### Curation Round 2
 
 The second curation step is to visually inspect all your new files and remove those that are
-not useful for ML, like a side view, interiour view, obvious dealership signage, a girly model
+not useful for ML, like a side view, interio - Visual inspectionr view, obvious dealership signage, a girly model
 draped across the car's hood, big for-sale text and price in front window, etc., 
 If you remove these images, you can rerun the scraping process a few weeks later
 when the offending vehicles have been removed from the website.
 
-### Curation Round 3
+### Curation Round 3 - Remove background
 
 Remove the background from all the images, using a public utility called ```backgroundremover```. 
 To install it, use ```pip```:
@@ -118,7 +118,7 @@ To install it, use ```pip```:
 
 See the file ```BackgroundRemove.sh``` on how this used.
 
-### Curation Round 4
+### Curation Round 4 - Remove registration numbers
 
 Finally, all the registration number plates need to be blanked out from the images. 
 Use the utility BlankRegPlate that is also in this repo:
@@ -130,9 +130,10 @@ find UKCarsDataset -type f -name "*.jpg" -exec ./BlankRegPlate.py {} \;
 
 Images where the number plate blanking failed will be notified and you may need to manually remove them using a GIMP or Photoshop, or just remove them and just go scrape some more images.
 
-## Use in other AI / ML applications
+## Curation Round 5 - Preparing for use in other AI / ML applications
 
-It may be useful to put all the files into one directory and to keep the attributes in the file name. 
+It may be useful to put all the files into one directory and to move the attributes of the directories into the file name. 
+Furthermore, to avoid ambiguity, two-word attributes can be combined into single terms by hyphenating them.
 
 ```
 mkdir ALLFILES
@@ -143,6 +144,7 @@ rename 's/UKVansDataset/Van/' *
 rename 's/UKCarsDataset/Car/' *
 rename 's/UKTrucksDataset/Truck/' *
 rename 's/UKPickupsDataset/Pickup/' *
+rename 's/ /-/g' *
 ```
 
 You should end up with file names like ```Van_VOLKSWAGEN_202106103709129.png```, which is useful for AI / ML apps like EdgeImpulse.
