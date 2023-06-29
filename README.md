@@ -149,6 +149,15 @@ rename 's/ /-/g' *
 
 You should end up with file names like ```Van_VOLKSWAGEN_202106103709129.png```, which is useful for AI / ML apps like EdgeImpulse.
 
+ML / AI application environments like EdgeImpulse like square formatted images for training and testing data, so here is all the images in a directory can be cropped, resized and centered in white-space:
+
+'''
+# Cropping all whitespace:
+mogrify -trim *.png
+# Reformating to centered 160x160:
+mogrify -gravity center -resize 160x160\> -extent 160x160 +repage *.png
+'''
+
 ---
 <sup><b id="f1">1</b> Yes, this is an underhand attempt to score a little affiliation fee. This project stagnated in 2013 and needs some urgent funding!</sup>
 
